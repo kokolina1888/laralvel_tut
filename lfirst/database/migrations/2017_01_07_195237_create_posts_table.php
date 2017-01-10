@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title')->unique();
             $table->text('content');
             $table->integer('is_admin');
+            // $table->integer('user_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });
