@@ -212,7 +212,7 @@ use App\Taggable;
 // 	echo $photo->path;
 	
 // });
-
+-
 // Route::get('/post/tag', function(){
 // 	$post = Post::find(1);
 // 	foreach ($post->tags as $tag) {
