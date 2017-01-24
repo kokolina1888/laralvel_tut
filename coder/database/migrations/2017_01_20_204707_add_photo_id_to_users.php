@@ -14,7 +14,7 @@ class AddPhotoIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('photo_id');
+            $table->integer('photo_id')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddPhotoIdToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            return dropColumn('photo_id');
+            //return dropColumn('photo_id');
         });
     }
 }

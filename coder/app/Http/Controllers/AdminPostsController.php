@@ -21,11 +21,12 @@ class AdminPostsController extends Controller
      */
     public function index()
     {
+       session(['username' => Auth::user()->name]);
+       // dd(session()->all());
+       $posts = Post::all();
 
-        $posts = Post::all();
-
-        return view('admin.posts.index', compact('posts'));
-    }
+       return view('admin.posts.index', compact('posts'));
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +35,7 @@ class AdminPostsController extends Controller
      */
     public function create()
     {
-        
+
         // $categories = Category::all();
 
         $categories = Category::pluck('name', 'id')->all();
@@ -89,7 +90,11 @@ class AdminPostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $user_id = $id;
+        $categories = Category::pluck('name', 'id')->all();
+        
+        return view('admin.posts.edit', compact('post', 'categories', 'user_id'));
     }
 
     /**
@@ -101,7 +106,22 @@ class AdminPostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+       // $user_id = $request->user_id;
+        $post = Post::find($id);    
+        //dd(User::find($user_id));   
+
+        if($file = $request->file('photo_id')){
+            $name = time().$file->getClientOriginalName();
+            $file->move('images', $name);
+            $photo = Photo::create(['file'=>$name]);
+
+            $input['photo_id'] = $photo->id;
+        }
+
+        $post->update($input);
+
+        return redirect('/admin/posts');
     }
 
     /**
@@ -112,6 +132,11 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        unlink(public_path().$post->photo->file);
+
+        $post->delete();
+        return redirect('/admin/posts');
+
     }
 }

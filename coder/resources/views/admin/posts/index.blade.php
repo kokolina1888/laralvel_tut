@@ -13,6 +13,7 @@
 			<th>Content</th>
 			<th>Created</th>
 			<th>Updated</th>
+			<th></th>
 		</tr>
 		@if($posts)
 		@foreach($posts as $post)
@@ -31,6 +32,7 @@
 			<td>{{$post->body}}</td>
 			<td>{{$post->created_at->diffForHumans()}}</td>
 			<td>{{$post->updated_at->diffForHumans()}}</td>
+			<td><a href="{{route('posts.edit', ['post_id'=>$post->id, 'auth_user'=>Auth::user()->name])}}">Edit Post</a></td>
 
 
 			

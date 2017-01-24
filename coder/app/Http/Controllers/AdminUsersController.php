@@ -21,8 +21,8 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-       // session(['username' => Auth::user()->name]);
-       //  dd(session()->all());
+       session(['username' => Auth::user()->name]);
+       //dd(session()->all());
         $users = User::all();
 
         return view('admin.users.index', compact('users', 'message'));
