@@ -12,23 +12,24 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+	
+Route::get('admin/users/', 'AdminUsersController@index')->name('admin.users.index');
+Route::get('admin/users/create', 'AdminUsersController@create')->name('admin.users.create');
+	
+Route::get('admin/posts/', 'AdminPostsController@index')->name('admin.posts.index');
+Route::get('admin/posts/create', 'AdminPostsController@create')->name('admin.posts.create');
 
-	// Route::resource('admin/users', 'AdminUsersController');
-	Route::get('admin/users/', 'AdminUsersController@index')->name('admin.users.index');
-	Route::get('admin/users/create', 'AdminUsersController@create')->name('admin.users.create');
-	// Route::get('admin/users/{id}/edit', 'AdminUsersController@edit');
-	// Route::put('admin/users/update/{id}', 'AdminUsersController@update');
-		
-	Route::get('admin/posts/', 'AdminPostsController@index')->name('admin.posts.index');
-	Route::get('admin/posts/create', 'AdminPostsController@create')->name('admin.posts.create');
+Route::get('admin/categories/', 'AdminCategoriesController@index')->name('admin.categories.index');
+Route::get('admin/categories/create', 'AdminCategoriesController@create')->name('admin.categories.create');
 
-
+Route::get('admin/medias/', 'AdminMediasController@index')->name('admin.medias.index');
+Route::get('admin/medias/create', 'AdminMediasController@create')->name('admin.medias.create');
 
 
 

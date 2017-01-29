@@ -23,7 +23,7 @@
 			<td>{{$post->category->name}}</td>
 			<td>
 				@if($post->photo)
-				<img src="{{$post->photo->file}}" alt="" height="150">
+				<img src="{{url($post->photo->file)}}" alt="" height="150">
 				@else 
 				<img src="http://placehold.it/150x150" alt="">
 				@endif

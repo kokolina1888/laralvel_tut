@@ -21,11 +21,11 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-       session(['username' => Auth::user()->name]);
+       // session(['username' => Auth::user()->name]);
        //dd(session()->all());
         $users = User::all();
-
-        return view('admin.users.index', compact('users', 'message'));
+// dd($users);
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -112,6 +112,8 @@ class AdminUsersController extends Controller
             $photo = Photo::create(['file'=>$name]);
             $input['photo_id'] = $photo->id;
         }
+
+        $input['password'] = bcrypt($input['password']);
 
         $user->update($input);
         return redirect('admin/users');

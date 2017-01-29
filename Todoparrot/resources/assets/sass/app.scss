@@ -1,0 +1,17 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+$color: #5c6763;
+$font-size: 1.5em;
+
+body{
+	background-color: $color;
+	font-size: $font-size;
+}

@@ -2,6 +2,7 @@
 @section('page_title')
 {{ Auth::user()->name }}
 @stop
+
 @section('content')
 
 <div class="container">
@@ -22,25 +23,22 @@
       </tr>
     </thead>
     <tbody>
-    @if($users)
-    	@foreach($users as $user)
-      	<tr>
-      	  <td>{{$user->name}}</td>
+@if($users)
+      @foreach($users as $user)
+        <tr>
+          <td>{{$user->name}}</td>
           <td>{{$user->email}}</td>
-      	  <td>
-          @if($user->photo_id)
-          <img src="{{url($user->photo->file)}}" alt="" height="100">
-          @else
-          {{'no user photo'}}
-          @endif
-          </td>
-      	  <td>{{$user->role->name}}</td>
-      	  <td>{{$user->is_active ? 'Active' : 'Active'}}</td>
-      	  <td>{{$user->created_at->diffForHumans()}}</td>
+          <td>    
+          <img src="{{url($user->photo->file)}}" alt="" height="150">
+            </td>
+          
+          <td>{{$user->role->name}}</td>
+          <td>{{$user->is_active ? 'Active' : 'Active'}}</td>
+          <td>{{$user->created_at->diffForHumans()}}</td>
           <td>{{$user->updated_at->diffForHumans()}}</td>
-      	  <td><a href="{{route('users.edit', ['user_id'=>$user->id, 'auth_user'=>Auth::user()->name])}}">Edit User</a></td>
-      	</tr>
-      	@endforeach
+          <td><a href="{{route('users.edit', ['user_id'=>$user->id, 'auth_user'=>Auth::user()->name])}}">Edit User</a></td>
+        </tr>
+        @endforeach
     @endif     
     </tbody>
   </table>
