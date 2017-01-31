@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         'Bootstrapper\BootstrapperL5ServiceProvider',
         'Collective\Html\HtmlServiceProvider',
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
 
         /*
          * Package Service Providers...

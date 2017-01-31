@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Todolist;
+use App\Category;
+use App\Http\Requests\ListFormRequest;
 
 class ListsController extends Controller
 {
@@ -15,7 +17,7 @@ class ListsController extends Controller
      */
     public function index()
     {
-        $lists = Todolist::orderBy('created_at', 'desc')->paginate(2);
+        $lists = Todolist::orderBy('created_at', 'desc')->paginate(10);
         return view('lists.index')->with('lists', $lists);
     }
 
@@ -26,9 +28,9 @@ class ListsController extends Controller
      */
     public function create()
     {
-        $list = Todolist::create(['name' => 'San Juan Vacation',
-                                    'note'=> 'Pre-vacation planning',
-                                    'description'=> 'description']);
+       
+       $categories = Category::pluck('name', 'id');
+       return view('lists.create')->with('categories', $categories);
 
     }
 
@@ -38,8 +40,28 @@ class ListsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    
+    public function store(ListFormRequest $request)
     {
+        $list = new Todolist(array(
+            'name'          =>  $request->get('name'),
+            'description'   =>  $request->get('description'),
+            'note'          =>  $request->get('note'),
+
+
+            ));
+
+        $list->save();
+        $category = $request->get('categories');
+        $cat_desc = $request->get('cat_desc');
+
+        $list->categories()->attach($category);
+        // $list->categories()->attach($cat_desc);
+
+
+        $request->session()->flash('status', 'List has been created successfully!');
+
+        return \Redirect::route('lists.create');
         //
     }
 
@@ -65,7 +87,8 @@ class ListsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $list = Todolist::find($id);
+        return view('lists.edit', compact('list', $list));
     }
 
     /**
@@ -75,11 +98,18 @@ class ListsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ListFormRequest $request, $id)
     {
-        $list = Todoparrot::find($id);
-        $list->name = 'Updated name';
-        $list->save();
+        $list = Todolist::find($id);
+        $list->update([
+             'name'          => $request->get('name'),
+            'description'   => $request->get('description'),
+            'note'          => $request->get('note'),
+        ]);
+
+        $message = 'your list has been updated.';
+
+        return view('lists.create', compact('message', $message)); 
     }
 
     /**
@@ -90,6 +120,10 @@ class ListsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Todolist::destroy($id);
+
+        session()->flash('status', 'List has been deleted!');
+
+        return \Redirect::route('lists.index');
     }
 }

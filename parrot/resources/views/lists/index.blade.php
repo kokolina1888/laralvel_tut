@@ -4,15 +4,21 @@
 
 <h1>Lists</h1>
 
+@if (session('status'))
+<div class="alert alert-success">
+	{{ session('status') }}
+</div>
+@endif
+
 @if($lists->count() > 0)
 
-	{!! $lists->render() !!}
-	
-	@foreach($lists as $list)
+{!! $lists->render() !!}
 
-	{{ $list->name}}
-	
-	@endforeach
+@foreach($lists as $list)
+
+{{ $list->name}}
+
+@endforeach
 
 @else 
 <p>
