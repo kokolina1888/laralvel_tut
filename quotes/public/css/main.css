@@ -1,0 +1,161 @@
+body {
+	padding:0;
+	margin: 0;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-style: 16px;
+	line-height: 20px;
+}
+
+/***MAIN SECTION*/
+
+.main {
+	width: 80%;
+	margin: auto
+}
+
+.edit-quote {
+	text-align: center
+}
+
+.quotes {
+	text-align: center;
+}
+
+.quote {
+	position: relative;
+	display: inline-block;
+	border: 1px solid #ccc;
+	width: calc(25%-48px);
+	margin: 32px;
+	padding: 16px;
+	vertical-align: top;
+	background-color: #fff6e0
+}
+
+.quotes .first-in-line {
+	margin-right: 0
+}
+
+.quotes .last-in-line {
+	margin-right: 0
+}
+
+.quote .info {
+	margin-top: 8px;
+	margin-right: 12px;
+	font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+	color: #ccc;
+}
+.quote .info a {
+	color: #ccc;
+}
+.quote .info a:hover,
+.quote .info a:active {
+	color: #333131	
+}
+
+.quote .delete {
+	position: absolute;
+	top: 0;
+	right: 4px;
+	font-family: sans-serif
+}
+.quote .delete a {
+	color: #bbb;
+	text-decoration: none
+}
+.quote .delete a:hover,
+.quote .delete a:active {
+	color: red
+}
+
+.input-group {
+	margin: 16px 0
+}
+
+.input-group label {
+	display: block;
+	padding: 4px;
+	text-align: center;
+	font-weight: bold
+}
+.input-group input,
+.input-group textarea {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-family: inherit;
+	font-size: inherit;
+	padding: 4px 8px
+}
+
+.input-group #author {
+	width: 200px
+}
+
+.input-group #email {
+	width: 200px
+}
+
+.input-group textarea {
+	width: 400px
+}
+
+.btn {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: #ffecd2;
+	font-size: inherit;
+	font-family: sans-serif;
+	padding: 8px;
+	cursor: pointer
+}
+
+.btn:hover,
+.btn:active {
+	background-color: #fff6e6
+}
+
+/*error-messages*/
+
+.info-box {
+	text-align: center;
+	margin: auto;
+	padding: 16px;
+	border-radius: 3px;
+	width: 350px
+}
+
+.fail {
+	border: 1px solid red;
+	background-color: #F92F2F;
+	color: #6E0303
+}
+
+.success {
+	border: 1px solid #ccc;
+	background-color: #2ECB35;
+	color: #ccc
+}
+
+.filter-bar {
+	width: 100%;
+	padding: 16px;
+	background-color: #F6F30B;
+	color: #000;
+	text-align: center
+}
+
+.pagination {
+	font-size: 20px
+	margin-bottom: 10px;
+}
+
+.pagination a {
+	color: #000;
+	text-align: none
+}
+
+.pagination a:hover,
+.pagination a:active {
+	color:#ccc
+}

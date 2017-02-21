@@ -1,0 +1,151 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    padding: 0;
+    margin: 0
+}
+a{
+    color:#od6742;
+    text-decoration: none;
+}
+
+a:hover, a:active{
+    color: #8900c6
+}
+li.active{
+    background-color: #fff
+}
+li.active a {
+     color: #8900c6
+}
+
+h3 {
+    margin: 0;
+}
+
+.main {
+    width: 700px;
+    margin: 32px auto;
+}
+
+.btn {
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #8909c6;
+    border-radius: 3px;
+    padding: 4px 6px;
+    background-color: #8908c6;
+    color: #fff;
+    transition: background-color 8.3s;
+}
+.btn.danger {
+    color: #e5003c;
+    border: 1px solid #e5003c;
+    background-color: #ffc4be
+}
+
+.btn.danger:hover,
+.btn.danger:active {
+    background-color: : #e5003c;
+    color#fff
+}
+
+.btn:hover,
+.btn:active {
+    background-color: #fff;
+    color: #8900c6;
+}
+
+.social-slider {
+    width: 50px;
+    height: 100px;
+    position: fixed;
+    left: 0;
+    top: 25vh;
+    background-color: #A318F3;
+}
+
+.main-nav, .main-footer {
+    border-bottom: 1px solid lightgrey;
+   
+    text-align: center;
+    font-size: 28px;
+    background-color: #A318F3;
+}
+.main-nav {
+     box-shadow: 0 2px 2px lightgrey;
+}
+
+.main-nav ul,
+.main-footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+.main-footer{
+    box-shadow: 0 -4px 2px lightgrey;
+}
+.main-nav ul li,
+.main-footer ul li {
+    display: inline-block;
+    padding: 32px 16px;  
+    transition: background-color 0.2s
+}
+
+.main-nav ul li a,
+.main-footer ul li a{
+     color: #fff;
+}
+
+.main-nav ul li:hover,
+.main-footer ul li:hover {
+    background-color: #fff
+}
+
+.main-nav ul li:hover a,
+.main-footer li:hover a{
+     color: #A318F3; 
+
+}
+
+.main-nav a:hover,
+.main-nav a:active {
+     color: #A318F3; 
+}
+
+a.active{
+    color: #A318F3; 
+}
+
+.main-footer {   
+    text-align: center;   
+}
+
+.blog-post {
+    border: 2px solid #A318F3;
+    border-radius: 8px 0 8px 8px;
+    padding: 16px;
+    margin-bottom: 32px
+}
+
+.subtitle {
+    color: darkgrey;
+    font-size: 14px
+}
+
+.pagination {
+    font-size: 28px
+}
+
+.pagination a {
+    padding: 0 16px;
+}
+
+#contact-form input {
+    width: 66%
+}
+
+
+.main-nav ul li.active a {
+     color: #8900c6
+}
