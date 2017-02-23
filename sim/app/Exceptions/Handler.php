@@ -1,6 +1,6 @@
 <?php
 
-namespace sim\Exceptions;
+namespace Sim\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;

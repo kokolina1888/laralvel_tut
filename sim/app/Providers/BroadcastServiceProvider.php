@@ -1,6 +1,6 @@
 <?php
 
-namespace sim\Providers;
+namespace Sim\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;

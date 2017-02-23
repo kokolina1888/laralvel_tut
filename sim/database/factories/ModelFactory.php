@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(sim\User::class, function (Faker\Generator $faker) {
+$factory->define(Sim\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [

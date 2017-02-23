@@ -1,8 +1,8 @@
 <?php
 
-namespace sim\Http\Controllers\Auth;
+namespace Sim\Http\Controllers\Auth;
 
-use sim\Http\Controllers\Controller;
+use Sim\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller

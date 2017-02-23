@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => sim\User::class,
+            'model' => Sim\User::class,
         ],
 
         // 'users' => [
