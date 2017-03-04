@@ -2,6 +2,7 @@
 
 namespace Sim\Providers;
 
+use Sim\Page;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -57,6 +58,15 @@ class RouteServiceProvider extends ServiceProvider
         ], function ($router) {
             require base_path('routes/web.php');
         });
+
+        foreach (Page::all() as $page) {
+           Route::get($page->url, ['as'=> $page->name, function() use ($page){
+                return $this->app->call('Sim\Http\Controllers\PageController@show', [
+                    'page' =>$page,
+                    'parameters' => Route::current()->parameters()
+                    ]);
+            }]);
+        }
     }
 
     /**

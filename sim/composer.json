@@ -7,21 +7,32 @@
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
-        "laravelcollective/html": "~5.0"
+        "laravelcollective/html": "~5.0",
+        "illuminate/support": "5.1.*|5.2.*|5.3.*",
+        "laracasts/presenter": "^0.2.1",
+        "baum/baum": "^1.1",
+        "league/commonmark": "^0.15.3",
+        "graham-campbell/markdown": "^7.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "illuminate/pagination": "5.1.*|5.2.*|5.3.*",
+
+        "squizlabs/php_codesniffer": "~2.0"
+
     },
     "autoload": {
         "classmap": [
             "database"
         ],
         "psr-4": {
-            "Sim\\": "app/"
+            "Sim\\": "app/",
+            "Lewis\\Presenter\\": "src"
+
         },
         "files": [
             "app/helpers.php"

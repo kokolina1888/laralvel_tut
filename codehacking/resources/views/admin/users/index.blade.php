@@ -20,11 +20,11 @@
     	@if($users)
         @foreach($users as $user)
         <tr>
-        <td><a href="{{route('admin.users.edit', $user->id)}}">{{$user->name}}</a></td>
+        <td><a href="{{route('admin-users-edit', $user->id)}}">{{$user->name}}</a></td>
         <td>{{$user->email}}</td>
         <td>        
             @if($user->photo)
-                <img src="{{$user->photo->file}}" height="150">
+                <img src="{{asset($user->photo->file)}}" height="150">
             @else 
             No user photo            
             @endif

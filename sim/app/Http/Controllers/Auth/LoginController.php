@@ -4,6 +4,9 @@ namespace Sim\Http\Controllers\Auth;
 
 use Sim\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 class LoginController extends Controller
 {
@@ -25,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'backend/dashboard';
 
     /**
      * Create a new controller instance.
@@ -35,6 +38,24 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
-        $this->redirectTo = route('backend.dashboard');
+        
     }
+
+    public function login(Request $request)
+    {
+       //dd($request['email']);
+
+
+        $this->validate($request, [
+            'email'     =>'required|email',
+            'password'  => 'required']);
+
+       if (!Auth::attempt(['email'=>$request['email'], 'password'=>$request['password']])) {
+            return redirect()->back()->with(['fail'=>'could not log you in']);
+        } else {
+        
+                return redirect()->route('backend.dashboard');
+            }
+    }
+   
 }

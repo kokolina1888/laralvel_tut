@@ -140,6 +140,8 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
+        Baum\Providers\BaumServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -193,6 +195,7 @@ return [
     */
 
     'aliases' => [
+    'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
     'Form' => Collective\Html\FormFacade::class,
     'Html' => Collective\Html\HtmlFacade::class,
     'App' => Illuminate\Support\Facades\App::class,

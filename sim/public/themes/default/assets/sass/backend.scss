@@ -1,4 +1,7 @@
 @import 'bootstrap';
+@import 'font-awesome';
+@import 'simplemde.css';
+@import 'datepicker';
 
 h1 {
 	color: #00f;
@@ -12,4 +15,9 @@ h1 {
 
 body {
 	padding-bottom: 2rem;
+}
+
+.excerpt .CodeMirror {
+	height: 150px; 
+	min-height: 150px;
 }
