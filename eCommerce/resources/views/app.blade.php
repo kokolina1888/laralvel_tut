@@ -12,6 +12,9 @@
 		<h1>Welcome to professional Lawn Care Service Provider</h1>
 
 		</header>	
-	@yield('content')
+		<div class="col-md-10 col-md-offset-1">
+			@yield('content')
+		</div>
+	
 </body>
 </html>
