@@ -23,4 +23,14 @@ Route::post('contact', ['as'=>'contact_store',
 
 Auth::routes();
 
+Route::resource('discounts', 'DiscountsController', ['only'=>'index']);
 
+Route::resource('catalog', 'ProductController', ['only'=>['index', 'show']]);
+
+
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

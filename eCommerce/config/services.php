@@ -36,6 +36,11 @@ return [
     ],
     'mandrill' => [
     'secret' => 'jAkPx80P5MJogFBNgICqew',
-]
+    ],
 
+     'stripe' => [
+     'model' => 'User', 
+     'secret'=> env('STRIPE_API_SECRET')
+     ]
+    
 ];
