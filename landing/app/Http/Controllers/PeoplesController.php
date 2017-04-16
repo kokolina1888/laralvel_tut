@@ -30,10 +30,10 @@ class PeoplesController extends Controller
        $peoples = People::all();
 
 
-        $data = ['title' => 'admin team'];
-        return view('admin.peoples.peoples', compact('peoples', 'data'));
-   
-}
+       $data = ['title' => 'admin team'];
+       return view('admin.peoples.peoples', compact('peoples', 'data'));
+
+   }
     /**
      * Show the form for creating a new resource.
      *
@@ -117,23 +117,26 @@ class PeoplesController extends Controller
         $file = $request->file('images');
         $input['images'] = $file->getClientOriginalName();
         $file->move(public_path().'/assets/user_img', $input['images']);
+
+        $filename = public_path().'/assets/user_img/'.$input['old_images'];
+
+        File::delete($filename);
+
     } else {
 
         $input['images'] = $input['old_images'];
         
     }
 
-
+    unset($input['old_images']);
+    
     $people->fill($input);
 
     if($people->update()){
-        $filename = public_path().'\assets\user_img\\'.$input['old_images'];
 
-        File::delete($filename);
-        unset($input['old_images']);
 
-        return redirect('admin/team')->with('status', 'The team member has been updated!');
-    }
+      return redirect('admin/team')->with('status', 'The team member has been updated!');
+  }
 }
 
     /**

@@ -10,4 +10,11 @@ class Filter extends Model
 	{
 		return $this->hasMany('App\Portfolio');
 	}
+
+	public static function allTags()
+	{
+		
+		return Filter::all()->pluck('name', 'id')->toArray();
+
+	}
 }

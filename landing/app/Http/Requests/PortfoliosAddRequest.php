@@ -24,7 +24,7 @@ class PortfoliosAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name'=>'required|unique',
             'filter_id'=>'required',
             'images'=>'required',
 

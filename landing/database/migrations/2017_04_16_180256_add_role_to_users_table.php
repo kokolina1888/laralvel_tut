@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFilterIdToPortfoliosTable extends Migration
+class AddRoleToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class AddFilterIdToPortfoliosTable extends Migration
      */
     public function up()
     {
-       
+         Schema::table('users', function($table) {
+         $table->enum('role', ['plain', 'admin'])->default('plain');
+
+        
+     });
     }
 
     /**
@@ -23,7 +27,8 @@ class AddFilterIdToPortfoliosTable extends Migration
      */
     public function down()
     {
-      
-    
-   }
+         Schema::table('users', function($table) {
+        $table->dropColumn('role');
+    });
+    }
 }

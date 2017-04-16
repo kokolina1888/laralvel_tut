@@ -14,9 +14,6 @@ Route::get('/', 'PagesController@index')->name('home');
 Route::get('service', 'ServicesController@index')->name('service');
 Route::get('portfolio', 'PortfoliosController@index')->name('Portfolio');
 Route::get('team', 'PeoplesController@index')->name('team');
-Route::get('contact', 'ContactsController@index')->name('contact');
-Route::post('contact', 'ContactsController@sendMail');
-
 
 Route::resource('pages', 'PagesController', ['only'=>'show']);
 Route::resource('service', 'ServicesController', ['only'=>'show']);
@@ -25,19 +22,24 @@ Route::resource('team', 'PeoplesController', ['only'=>'show']);
 
 
 // ADMIN AREA ROUTES
+Route::group(['middleware' => ['auth']], function () {
 
-Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
-	Route::get('/', 'PagesController@adminIndex')->name('admin');
-	Route::get('/services', 'ServicesController@adminIndex')->name('admin_services');
-	Route::get('/portfolios', 'PortfoliosController@adminIndex')->name('admin_portfolios');
-	Route::get('/team', 'PeoplesController@adminIndex')->name('admin_team');
+	Route::get('contact', 'ContactsController@index')->name('contact');
+	Route::post('contact', 'ContactsController@sendMail');
 
-	Route::resource('pages', 'PagesController', ['except'=>['index', 'show']]);
-	Route::resource('service', 'ServicesController', ['except'=>['index', 'show']]);
-	Route::resource('portfolio', 'PortfoliosController', ['except'=>['index', 'show']]);
-	Route::resource('team', 'PeoplesController', ['except'=>['index', 'show']]);
+	Route::group(['prefix'=>'admin', 'middleware' => ['admin']], function(){
+		Route::get('/', 'PagesController@adminIndex')->name('admin');
+		Route::get('/services', 'ServicesController@adminIndex')->name('admin_services');
+		Route::get('/portfolios', 'PortfoliosController@adminIndex')->name('admin_portfolios');
+		Route::get('/team', 'PeoplesController@adminIndex')->name('admin_team');
 
+		Route::resource('pages', 'PagesController', ['except'=>['index', 'show']]);
+		Route::resource('service', 'ServicesController', ['except'=>['index', 'show']]);
+		Route::resource('portfolio', 'PortfoliosController', ['except'=>['index', 'show']]);
+		Route::resource('team', 'PeoplesController', ['except'=>['index', 'show']]);
 
+		Route::resource('users', 'UsersController');
+	});
 });
 //Route::match(['get', 'post'], '/', ['uses'=>'IndexController@execute', 'as'=>'home']);
 

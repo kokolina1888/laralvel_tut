@@ -13,7 +13,7 @@ class PortfoliosUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class PortfoliosUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required|unique:portfolios,name,'.$this->get('id'),
+            'filter_id'=>'required',
+            
+
         ];
     }
 }

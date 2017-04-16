@@ -45,7 +45,7 @@ class PortfoliosController extends Controller
     {
         $data['title'] = 'admin portfolios';
         $tags = Filter::all()->pluck('name', 'id')->toArray();
-      
+
         return view('admin.portfolios.create', compact('data', 'tags'));
     }
 
@@ -85,7 +85,7 @@ class PortfoliosController extends Controller
     public function show($id)
     {
         $portfolio = Portfolio::findOrFail($id);
-return view('site.portfolios.portfolio_show', compact('portfolio'));
+        return view('site.portfolios.portfolio_show', compact('portfolio'));
 
     }
 
@@ -97,7 +97,13 @@ return view('site.portfolios.portfolio_show', compact('portfolio'));
      */
     public function edit($id)
     {
-        //
+        $portfolio = Portfolio::findOrFail($id);
+
+        $tags = Filter::allTags();
+        $data['title'] = 'admin portfolios';
+
+        return view('admin.portfolios.edit', compact('portfolio', 'data', 'tags'));
+
     }
 
     /**
@@ -107,9 +113,34 @@ return view('site.portfolios.portfolio_show', compact('portfolio'));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PortfoliosUpdateRequest $request, $id)
     {
-        //
+        $portfolio = Portfolio::findOrFail($id);
+
+        $input = $request->except('_token', 'images');
+
+        if($request->hasFile('images')){
+            $file = $request->file('images');
+            $input['images'] = $file->getClientOriginalName();
+            $file->move(public_path().'/assets/user_img', $input['images']);
+
+            $filename = public_path().'/assets/user_img/'.$input['old_images'];
+            File::delete($filename);        
+
+
+
+        } else {
+            $input['images'] = $input['old_images'];
+        }
+        unset($input['old_images']);
+
+        $portfolio->fill($input);
+
+        if($portfolio->update()){
+
+
+            return redirect('admin/portfolios')->with('status', 'The portfolio has been updated!');
+        }
     }
 
     /**
