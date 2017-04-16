@@ -25,7 +25,6 @@
     <!-- Portfolio Filters -->
     <div class="portfolio"> 
 
-
       @if(isset($tags))
       <div id="filters" class="sixteen columns">
         <ul class="clearfix">
@@ -49,8 +48,8 @@
           @foreach($portfolios as $item)
 
           <!-- Portfolio Item -->
-          <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   {{ $item->filter }} isotope-item">
-            <div class="portfolio_img"> {{ Html::image('assets/img/'.$item->images,$item->name)}} </div>        
+          <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four   {{ $item->filter->name }} isotope-item">
+            <div class="portfolio_img"> {{ Html::image('assets/user_img/'.$item->images,$item->name)}} </div>        
             <div class="item_overlay">
               <div class="item_info"> 
                 <h4 class="project_name"><a href="{{route('portfolio.show', $item->id)}}">{{ $item->name }}</a></h4>

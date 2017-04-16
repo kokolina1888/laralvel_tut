@@ -29,7 +29,7 @@ Route::resource('team', 'PeoplesController', ['only'=>'show']);
 Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
 	Route::get('/', 'PagesController@adminIndex')->name('admin');
 	Route::get('/services', 'ServicesController@adminIndex')->name('admin_services');
-	Route::get('/portfolios', 'PortfoliosController@adminIndex');
+	Route::get('/portfolios', 'PortfoliosController@adminIndex')->name('admin_portfolios');
 	Route::get('/team', 'PeoplesController@adminIndex')->name('admin_team');
 
 	Route::resource('pages', 'PagesController', ['except'=>['index', 'show']]);

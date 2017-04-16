@@ -21,7 +21,7 @@
           </a>
 		</li>
 		
-		<li><a  href="#">
+		<li><a  href="{{ route('admin_portfolios')}}">
           <h5>Portfolios</h5>
           </a>
 		</li>

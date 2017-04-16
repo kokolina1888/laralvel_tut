@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="form-group">
-		<div class="service_icon"> <span><i class="fa {{ $service->icon}}" aria-hidden="true"></i></span> </div>
+		<div class="service_icon"> <span style="margin-left: 27px"><i class="fa {{ $service->icon}}" aria-hidden="true"></i></span> </div>
 		{!! Form::label('icon', 'Icon:',['class'=>'col-xs-2 control-label']) !!}
 		<div class="col-xs-8">
 			{!! Form::text('icon', $service->icon, ['class' => 'form-control']) !!}

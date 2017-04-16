@@ -17,7 +17,7 @@ class CreateTablePortfolios extends Migration
             $table->increments('id');
             $table->string('name', 200);
             $table->string('images', 100);
-            $table->string('filter', 100);
+            $table->integer('filter', 100);
 
             $table->timestamps();
         });
@@ -30,6 +30,9 @@ class CreateTablePortfolios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('portfolios');
+        // Schema::dropIfExists('portfolios');
+        Schema::table('portfolios', function (Blueprint $table) {
+            $table->dropColumn('filter');
+        });
     }
 }
