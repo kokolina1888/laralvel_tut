@@ -43,3 +43,7 @@ Auth::routes(['login'=>'auth.login']);
 
 Route::get('/home', 'HomeController@index');
 Route::get('profile', 'ProfileController@update')->middleware('auth:user');
+
+Route::get('login/facebook', 'Auth\AuthController@redirectToFacebook');
+Route::get('login/facebook/callback', 'Auth\AuthController@getFacebookCallback');
+

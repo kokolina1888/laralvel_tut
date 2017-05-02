@@ -109,8 +109,8 @@
 <div class="container">
 
     <div style="height: 90px;"></div>
-    @yield('content')
 
+    @yield('content')
 </div> <!-- /container -->
 </main>
 
