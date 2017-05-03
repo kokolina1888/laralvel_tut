@@ -85,8 +85,10 @@ class ArticlesController extends SiteController
         
         $article = $this->a_rep->one($alias,['comments' => TRUE]);
         
-        dd($article);
-        
+        if($article){
+            $article->img = json_decode($article->img);
+        }
+             
         $content = view(env('THEME').'.article_content')->with('article',$article)->render();
         $this->vars = array_add($this->vars,'content',$content);
         
@@ -95,9 +97,8 @@ class ArticlesController extends SiteController
         $portfolios = $this->getPortfolios(config('settings.recent_portfolios'));
 
         
-        $this->contentRightBar = view(env('THEME').'.articlesBar')->with(['comments' => $comments,'portfolios' => $portfolios]);
-        
-        
+        $this->contentRightbar = view(env('THEME').'.articlesBar')->with(['comments' => $comments,'portfolios' => $portfolios]);
+   
         return $this->renderOutput();
     }   
     
