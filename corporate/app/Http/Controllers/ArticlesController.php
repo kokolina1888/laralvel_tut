@@ -88,6 +88,8 @@ class ArticlesController extends SiteController
         if($article){
             $article->img = json_decode($article->img);
         }
+
+        
              
         $content = view(env('THEME').'.article_content')->with('article',$article)->render();
         $this->vars = array_add($this->vars,'content',$content);

@@ -38,7 +38,7 @@ class SiteController extends Controller
         $navigation = view(env('THEME').'.navigation')->with('menu', $menu)->render(); 
         $this->vars = array_add($this->vars,'navigation',$navigation);       
 
-      
+       
         if($this->contentRightbar){
 
             $rightbar = view(env('THEME').'.rightbar')->with('content_rightbar', $this->contentRightbar)->render();
