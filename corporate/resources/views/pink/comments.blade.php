@@ -3,7 +3,7 @@
 	<div id="comment-{{ $item->id }}"class="comment-container">
 		<div class="comment-author vcard">
 		 @set($hash, ($item->email)?md5($item->email):$item->user->email)
-          <img alt="" src="https://gravatar.com/avatar/{{$hash}}?mm&s=55" class="avatar" />   
+          <img alt="" src="https://gravatar.com/avatar/{{$hash}}?d=mm&s=55" class="avatar" />   
     		<cite class="fn">{{ $item->user->name or $item->name }}</cite>                 
 		</div>
 		<!-- .comment-author .vcard -->
@@ -11,7 +11,8 @@
 			<div class="intro">
 				<div class="commentDate">
 					<a href="#comment-2">
-					{{ is_object($item->created_at) ?: $item->created_at->format('F d, Y \a\t H:i')}}	
+
+					@if(is_object($item->created_at)) {{$item->created_at->format('F d, Y \a\t H:i')}}	@endif
 					</a>                        
 					</div>
 					<div class="commentNumber">#&nbsp;</div>
