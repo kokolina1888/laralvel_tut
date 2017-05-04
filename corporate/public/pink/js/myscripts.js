@@ -13,27 +13,29 @@ jQuery(document).ready(function($) {
 		var comParent = $(this);
 		
 		$('.wrap_result').
-					css('color','green').
-					text('Сохранение комментария').
-					fadeIn(500,function() {
-						
-						var data = $('#commentform').serializeArray();
-						
-						$.ajax({
-							
-							url:$('#commentform').attr('action'),
-							data:data,
-							type:'POST',
-							datatype:'JSON',
-							success: function(html) {
-								
-							},
-							error:function() {
-								
-							}
-							
-						});
-					});
+		css('color','green').
+		text('Сохранение комментария').
+		fadeIn(500,function() {
+
+			var data = $('#commentform').serializeArray();
+
+			$.ajax({
+
+				url:$('#commentform').attr('action'),
+				data:data,
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+					type:'POST',
+					datatype:'JSON',
+					success: function(html) {
+
+					},
+					error:function() {
+
+					}
+
+				});
+		});
 		
 	});
 	
