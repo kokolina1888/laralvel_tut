@@ -8,8 +8,7 @@
 		</div>
 		<!-- .comment-author .vcard -->
 		<div class="comment-meta commentmetadata">
-			<div class="intro">
-				<div class="commentDate">
+			<div class="intro">				<div class="commentDate">
 					<a href="#comment-2">
 
 					@if(is_object($item->created_at)) {{$item->created_at->format('F d, Y \a\t H:i')}}	@endif
@@ -21,7 +20,8 @@
 					<p>{{ $item->text }}</p>
 				</div>
 				<div class="reply group">
-					<a class="comment-reply-link" href="#respond" onclick="return addComment.moveForm(&quot;comment-{{ $item->id }}&quot;, &quot;{{ $item->id }}&quot;, &quot;respond&quot;, &quot;{{ $item->article->id}}&quot;)">Reply</a>                    
+				<a class="comment-reply-link" href="#respond" onclick="return addComment.moveForm(&quot;comment-{{$item->id}}&quot;, &quot;{{$item->id}}&quot;, &quot;respond&quot;, &quot;{{$item->article_id}}&quot;)">Reply</a>  
+					
 				</div>
 				<!-- .reply -->
 			</div>
@@ -30,7 +30,7 @@
 		<!-- #comment-##  -->
 		@if(isset($com[$item->id]))
 		<ul class="children">
-		@include(env('THEME').'.comments', ['items'=>$com[$item->id]])
+		@include(env('THEME').'.comment', ['items'=>$com[$item->id]])
 			
 		</ul>
 		@endif
