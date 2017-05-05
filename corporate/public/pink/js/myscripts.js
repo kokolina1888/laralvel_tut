@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
 		e.preventDefault();
 		
 		var comParent = $(this);
-	
+
 		$('.wrap_result').
 		css('color','green').
 		text('Сохранение комментария').
@@ -28,7 +28,8 @@ jQuery(document).ready(function($) {
 				datatype:'JSON',
 				success: function(html) {
 					if(html.error){
-
+						$('.wrap_result').css('color','red').append('<br /><strond>Ошибка: </strong>' + html.error.join('<br />'));
+						$('.wrap_result').delay(2000).fadeOut(500);
 					} else if(html.success){
 						$('.wrap_result')
 						.append('<br /><strong>Comment has been saved</strong>')
@@ -59,6 +60,10 @@ jQuery(document).ready(function($) {
 
 				},
 				error:function() {
+					$('.wrap_result').css('color','red').append('<br /><strong>Ошибка: </strong>');
+					$('.wrap_result').delay(2000).fadeOut(500, function() {
+						$('#cancel-comment-reply-link').click();
+					});
 
 				}
 
@@ -75,7 +80,7 @@ jQuery(document).ready(function($) {
 
 	// 	var parent = $('#comment_parent');
 	// 	parent.attr('value', id);
-		
+
 	// });
 	
 });
