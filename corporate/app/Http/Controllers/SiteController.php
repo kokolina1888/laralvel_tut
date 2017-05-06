@@ -36,6 +36,7 @@ class SiteController extends Controller
         $menu = $this->getMenu();
 
         $navigation = view(env('THEME').'.navigation')->with('menu', $menu)->render(); 
+
         $this->vars = array_add($this->vars,'navigation',$navigation);       
 
        
@@ -46,6 +47,15 @@ class SiteController extends Controller
             $this->vars = array_add($this->vars, 'rightbar', $rightbar);
 
 
+        }   
+
+         if($this->contentLeftbar){
+
+            $leftbar = view(env('THEME').'.leftbar')->with('content_leftbar', $this->contentLeftbar)->render();
+
+            $this->vars = array_add($this->vars, 'leftbar', $leftbar);
+
+
         }      
 
         $footer = view(env('THEME').'.footer')->render();
@@ -53,6 +63,8 @@ class SiteController extends Controller
         $this->vars = array_add($this->vars,'keywords', $this->keywords);
         $this->vars = array_add($this->vars, 'meta_desc', $this->meta_desc);
         $this->vars = array_add($this->vars, 'title', $this->title);
+        $this->vars = array_add($this->vars, 'bar', $this->bar);
+
 
         return view($this->template)->with($this->vars);
     }
@@ -85,16 +97,7 @@ class SiteController extends Controller
     }
 
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
+   
     /**
      * Show the form for creating a new resource.
      *
@@ -105,59 +108,4 @@ class SiteController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
