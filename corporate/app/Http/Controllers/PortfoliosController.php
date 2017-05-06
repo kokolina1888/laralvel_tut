@@ -34,49 +34,30 @@ class PortfoliosController extends SiteController
 
 
 
-     $this->title = 'Portfolios';
-     $this->keywords = 'Portfolios';
-     $this->meta_desc = 'Portfolios';
+       $this->title = 'Portfolios';
+       $this->keywords = 'Portfolios';
+       $this->meta_desc = 'Portfolios';
 
-     $portfolios = $this->getPortfolios();
+       $portfolios = $this->getPortfolios();
 
-     $content = view(env('THEME').'.portfolios_content')->with('portfolios', $portfolios)->render();
-     $this->vars = array_add($this->vars,'content',$content);
+       $content = view(env('THEME').'.portfolios_content')->with('portfolios', $portfolios)->render();
+       $this->vars = array_add($this->vars,'content',$content);
 
 
 
-     return $this->renderOutput();
- }
+       return $this->renderOutput();
+   }
 
- public function getPortfolios() {
-    $portfolios = $this->p_rep->get('*',FALSE,TRUE);
+
+   public function getPortfolios($take = FALSE,$paginate = TRUE) {
+
+    $portfolios = $this->p_rep->get('*',$take,$paginate);
     if($portfolios) {
         $portfolios->load('filter');
     }
-    
+
     return $portfolios;
 }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -84,9 +65,24 @@ class PortfoliosController extends SiteController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($alias) {
+
+
+        $portfolio  = $this->p_rep->one($alias);
+        $portfolios = $this->getPortfolios(config('settings.other_portfolios'), FALSE); 
+
+
+        $this->title = $portfolio->title;
+
+        //TO DO add columns in db
+        // $this->keywords = $portfolio->keywords;
+        // $this->meta_desc = $portfolio->meta_desc;
+        
+        $content = view(env('THEME').'.portfolio_content')->with(['portfolio' => $portfolio,'portfolios' => $portfolios])->render();
+        $this->vars = array_add($this->vars,'content',$content);
+
+        
+        return $this->renderOutput();
     }
 
     /**
