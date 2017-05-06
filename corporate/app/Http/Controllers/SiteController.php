@@ -52,6 +52,7 @@ class SiteController extends Controller
         $this->vars = array_add($this->vars,'footer', $footer);        
         $this->vars = array_add($this->vars,'keywords', $this->keywords);
         $this->vars = array_add($this->vars, 'meta_desc', $this->meta_desc);
+        $this->vars = array_add($this->vars, 'title', $this->title);
 
         return view($this->template)->with($this->vars);
     }

@@ -1,8 +1,6 @@
 @extends(env('THEME').'.layouts.site')
 
-@section('title')
-{{ $title }}
-@stop
+
 
 @section('navigation')
 {!! $navigation !!}
@@ -12,9 +10,6 @@
 {!! $content !!}
 @stop
 
-@section('bar')
-{!! $rightbar or ''!!}
-@stop
 
 @section('footer')
 {!! $footer !!}
