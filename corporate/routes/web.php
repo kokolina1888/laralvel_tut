@@ -28,3 +28,15 @@ Route::get('articles/cat/{cat_alias?}', ['uses'=>'ArticlesController@index', 'as
 Route::resource('comment', 'CommentController', ['only'=>'store']);
 
 Route::match(['get', 'post'], '/contacts', ['uses'=>'ContactsController@index', 'as'=>'contacts']);
+
+Route::get('login', 'Auth\LoginController@showLoginForm');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout');
+Route::group(['prefix' => 'admin','middleware'=> ['auth']],function() {
+	
+	//admin
+	Route::get('/', 'Admin\IndexController@index');
+	
+	Route::resource('/articles','Admin\ArticlesController');
+	
+});
