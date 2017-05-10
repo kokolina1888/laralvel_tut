@@ -42,11 +42,11 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e)
+    public function render($request, Exception $exception)
     {
-         if($this->isHttpException($e)) {
+         if($this->isHttpException($exception)) {
           
-            $statusCode = $e->getStatusCode();
+            $statusCode = $exception->getStatusCode();
           
             switch($statusCode) {
                 case 404 :
