@@ -29,14 +29,12 @@ class AdminController extends Controller
 	protected $vars;
 
 	public function __construct() {
-		
+		//fix this
 		// $this->user = Auth::user();
 		
 		// if(!$this->user) {
 			
 		// }
-		
-
 
 	}
 	
