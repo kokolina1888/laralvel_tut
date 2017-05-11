@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+    'name', 'email', 'password',
     ];
 
     /**
@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+    'password', 'remember_token',
     ];
 
     public function articles()
@@ -38,53 +38,64 @@ class User extends Authenticatable
         return $this->belongsToMany('Corp\Role', 'role_user');
     }
 
-    public function canDo($permission, $require = FALSE){
-        if(is_array($permission)){
-           foreach ($permission as $permName) {
-               $permName = $this->canDo($permName);
+    public function canDo($perms, $require = TRUE){
+        $check = false;
+        if(is_array($perms)){
+         foreach ($perms as $permName) {
+             $permName = $this->canDo($permName);
+             if($permName && $require){
+                $check = true;               
 
-               if($permName && !$require){
-                return TRUE;
-               } elseif(!$permName && $require){
-                return FALSE;
-               }
-           }
-           return $require;
+            } elseif(!$permName && $require){
 
-        } else {
-            foreach ($this->roles as $role) {
-               foreach($role->permissions as $permission){
-                if(str_is($permission, $permission->name))
+               $check = false;
 
-                    return TRUE;
-               }
-            }
+               break;
+
+           } elseif($permName && !$require){              
+
+            $check = true;
         }
-
     }
 
-    public function hasRole($name, $require = false)
-    {
-        if (is_array($name)) {
-            foreach ($name as $roleName) {
-                $hasRole = $this->hasRole($roleName);
 
-                if ($hasRole && !$require) {
-                    return true;
-                } elseif (!$hasRole && $require) {
-                    return false;
-                }
-            }
-            return $require;
-        } else {
-            foreach ($this->roles as $role) {
-                if ($role->name == $name) {
-                    return true;
-                }
+} else {
+    foreach ($this->roles as $role) {
+
+        foreach($role->permissions as $permission){
+
+            if(str_is($perms, $permission->name))
+
+             $check = true;
+     }
+ }
+ return $check;
+}
+
+}
+
+public function hasRole($name, $require = false)
+{
+    if (is_array($name)) {
+        foreach ($name as $roleName) {
+            $hasRole = $this->hasRole($roleName);
+
+            if ($hasRole && !$require) {
+                return true;
+            } elseif (!$hasRole && $require) {
+                return false;
             }
         }
-
-        return false;
+        return $require;
+    } else {
+        foreach ($this->roles as $role) {
+            if ($role->name == $name) {
+                return true;
+            }
+        }
     }
-    
+
+    return false;
+}
+
 }

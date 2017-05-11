@@ -9,6 +9,7 @@ use Corp\Http\Controllers\Controller;
 use Auth;
 
 use Menu;
+use Gate;
 
 class AdminController extends Controller
 {
@@ -29,12 +30,7 @@ class AdminController extends Controller
 	protected $vars;
 
 	public function __construct() {
-		//fix this
-		// $this->user = Auth::user();
-		
-		// if(!$this->user) {
-			
-		// }
+
 
 	}
 	

@@ -27,7 +27,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('view_admin', function($user){
-            return $user->canDo('view_admin', FALSE);
+            return $user->canDo('view_admin');
         });
+         
     }
 }
