@@ -40,38 +40,42 @@ class User extends Authenticatable
 
     public function canDo($perms, $require = TRUE){
         $check = false;
+
         if(is_array($perms)){
-         foreach ($perms as $permName) {
-             $permName = $this->canDo($permName);
-             if($permName && $require){
-                $check = true;               
 
-            } elseif(!$permName && $require){
+           foreach ($perms as $permName) {
 
-               $check = false;
+            $permName = $this->canDo($permName);
+            if(!$permName){
+                if(!$require){
 
-               break;
+                    $check = true;
+                } elseif($require){
+                    
+                    $check = false;
 
-           } elseif($permName && !$require){              
+                    break;
+                }
+            } elseif($permName){
 
-            $check = true;
+                $check = true;
+            }
         }
+
+    } else {
+        foreach ($this->roles as $role) {
+
+            foreach($role->permissions as $permission){
+
+                if(str_is($perms, $permission->name))
+
+                    $check = true;
+            }
+        }
+
     }
 
-
-} else {
-    foreach ($this->roles as $role) {
-
-        foreach($role->permissions as $permission){
-
-            if(str_is($perms, $permission->name))
-
-             $check = true;
-     }
- }
- return $check;
-}
-
+    return $check;
 }
 
 public function hasRole($name, $require = false)

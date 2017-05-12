@@ -32,9 +32,9 @@ class IndexController extends AdminController
 
 		$this->title = 'Admin panel';
 
-		// $result = $this->user->canDo('view_admin');
+		// $result = $this->user->hasRole(['admin', 'guest'], false);
 		// dd($result);
-		return $this->renderOutput();
+	return $this->renderOutput();
 		
 	}
 
