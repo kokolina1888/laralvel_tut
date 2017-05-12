@@ -20,8 +20,7 @@ class IndexController extends AdminController
 			}
 			return $next($request);
 		});
-
-		
+	
 		
 		$this->template = env('THEME').'.admin.index';
 		
@@ -32,7 +31,7 @@ class IndexController extends AdminController
 
 		$this->title = 'Admin panel';
 
-		// $result = $this->user->hasRole(['admin', 'guest'], false);
+		// $result = $this->user->hasRole(['admin', 'guest'], true);
 		// dd($result);
 	return $this->renderOutput();
 		
