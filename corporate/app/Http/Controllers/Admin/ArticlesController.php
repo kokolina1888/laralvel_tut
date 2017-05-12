@@ -41,7 +41,7 @@ class ArticlesController extends AdminController
 
 		$articles = $this->getArticles();
 
-		dd($articles);
+		$this->content = view(env('THEME').'.admin.articles_content')->with('articles', $articles);
 
 		return $this->renderOutput();
 
