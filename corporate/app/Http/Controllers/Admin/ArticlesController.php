@@ -97,4 +97,45 @@ class ArticlesController extends AdminController
 		
 		return redirect('/admin')->with($result);
 	}
+
+	public function edit($alias)
+	{
+		
+		if(Gate::denies('edit', new Article)){
+			abort(404);
+		}
+		$article = Article::where('alias', $alias)->first();
+		
+		$article->img = json_decode($article->img);
+		$categories = Category::select(['title','alias','parent_id','id'])->get();
+		
+		$lists = [];
+		foreach($categories as $category){
+
+			if($category->parent_id == 0){
+				$lists[$category->title] = [];
+			} else {
+				$lists[$categories->where('id', $category->parent_id)->first()->title][$category->id] = $category->title;
+			}
+		}
+
+		$this->title = 'Edit Article ' . $article->title;
+		$this->content = view(env('THEME').'.admin.articles_create_content')->with(['categories'=>$lists, 'article'=>$article]);
+
+		return $this->renderOutput();
+
+
+	}
+
+	public function update(ArticleRequest $request, $alias)
+	{
+		$article = Article::where('alias', $alias)->first();
+		$result = $this->a_rep->updateArticle($request, $article);
+
+		if(is_array($result) && !empty($result['error'])) {
+			return back()->with($result);
+		}
+		
+		return redirect('/admin')->with($result);
+	}
 }

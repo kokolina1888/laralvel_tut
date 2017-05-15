@@ -25,4 +25,9 @@ class ArticlePolicy
     {
         return $user->canDo('add_articles');
     }
+
+    public function edit(User $user)
+    {
+        return $user->canDo('edit_articles');
+    }
 }

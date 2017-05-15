@@ -8,6 +8,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 
 
+
 class RouteServiceProvider extends ServiceProvider
 {
     /**
@@ -28,11 +29,17 @@ class RouteServiceProvider extends ServiceProvider
     {
         //
 
-       Route::pattern('alias', '[\w-]+');
+     Route::pattern('alias', '[\w-]+');
 
-        parent::boot();
+     parent::boot();
 
-    }
+     Route::bind('articles', function($value){
+        return \Corp\Article::where('alias', $value)->first();
+    });
+
+
+
+ }
 
     /**
      * Define the routes for the application.
@@ -58,8 +65,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+        ->namespace($this->namespace)
+        ->group(base_path('routes/web.php'));
     }
 
     /**
@@ -72,8 +79,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+        ->middleware('api')
+        ->namespace($this->namespace)
+        ->group(base_path('routes/api.php'));
     }
 }
