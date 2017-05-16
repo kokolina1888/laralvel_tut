@@ -36,4 +36,6 @@ class ArticlePolicy
     {
         return ($user->canDo('delete_articles') && $user->id == $article->user_id);
     }
+
+    
 }
