@@ -12,6 +12,8 @@ use Corp\Category;
 
 use Corp\Http\Requests;
 
+use Corp\Article;
+
 class ArticlesController extends SiteController
 {
 
@@ -90,11 +92,11 @@ public function show($alias = FALSE) {
     if($article){
         $article->img = json_decode($article->img);
     }
-
+if(isset($article->id)){
     $this->title = $article->title;
     $this->kewords = $article->keywords;
     $this->meta_desc = $article->meta_desc;
-
+}
 
     $content = view(env('THEME').'.article_content')->with('article',$article)->render();
     $this->vars = array_add($this->vars, 'content', $content);
@@ -108,6 +110,4 @@ public function show($alias = FALSE) {
 
     return $this->renderOutput();
 }   
-
-
 }

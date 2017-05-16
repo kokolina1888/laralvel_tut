@@ -77,6 +77,7 @@
 				
 				{{ Html::image(asset(env('THEME')).'/images/articles/'.$article->img->path,'',['style'=>'width:400px']) }}
 				{!! Form::hidden('old_image',$article->img->path) !!}
+				{!! Form::hidden('id',$article->id) !!}
 
 			</li>
 			@endif

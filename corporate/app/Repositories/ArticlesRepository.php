@@ -85,6 +85,7 @@ class ArticlesRepository extends Repository {
 
 	public function updateArticle($request, $article) {
 
+		
 		if(Gate::denies('save', $this->model)) {
 			abort(404);
 		}
@@ -140,6 +141,21 @@ class ArticlesRepository extends Repository {
 
 		if($article->update()){
 			return ['status' => 'article hase been updated']; 
+		}
+	}
+
+	public function deleteArticle($article)
+	{
+
+	// delete_articles
+
+		if(Gate::denies('destroy', $article)){
+			abort(404);
+		}
+
+		$article->comments()->delete();
+		if($article->delete()){
+			return ['status' => 'article has been deleted'];
 		}
 
 	}

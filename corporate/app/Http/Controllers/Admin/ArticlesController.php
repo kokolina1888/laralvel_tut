@@ -100,7 +100,7 @@ class ArticlesController extends AdminController
 
 	public function edit($alias)
 	{
-		
+	
 		if(Gate::denies('edit', new Article)){
 			abort(404);
 		}
@@ -138,4 +138,21 @@ class ArticlesController extends AdminController
 		
 		return redirect('/admin')->with($result);
 	}
+
+
+public function destroy($alias)
+{
+		$article = Article::where('alias', $alias)->first();
+
+     $result = $this->a_rep->deleteArticle($article);
+        
+        if(is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        
+        return redirect('/admin')->with($result);
+}
+
+
+
 }

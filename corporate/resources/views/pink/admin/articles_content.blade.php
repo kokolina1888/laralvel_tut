@@ -20,7 +20,7 @@
 											@foreach($articles as $article)
 											<tr>
 				                                <td class="align-left">{{$article->id}}</td>
-				                                <td class="align-left">{!! Html::link(route('articles.edit',['articles'=>$article->alias]),$article->title) !!}</td>
+				                                <td class="align-left">{!! Html::link(route('articles.edit',['articles'=>$article->alias]), $article->title) !!}</td>
 				                                <td class="align-left">{{str_limit($article->text,200)}}</td>
 				                                <td>
 													@if(isset($article->img->mini))

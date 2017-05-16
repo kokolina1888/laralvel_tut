@@ -24,7 +24,7 @@ Route::resource('portfolios', 'PortfoliosController', ['parameters'=>['portfolio
 
 Route::resource('articles','ArticlesController',['parametres'=>['articles' => 'alias']]);	
 Route::get('articles/cat/{cat_alias?}', ['uses'=>'ArticlesController@index', 'as'=>'articlesCat']);
-
+Route::get('/articles/{alias}', ['uses' => 'ArticlesController@show', 'as'=>'ArtcleShow']);
 Route::resource('comment', 'CommentController', ['only'=>'store']);
 
 Route::match(['get', 'post'], '/contacts', ['uses'=>'ContactsController@index', 'as'=>'contacts']);
@@ -36,7 +36,6 @@ Route::group(['prefix' => 'admin','middleware'=> ['auth']],function() {
 	
 	//admin
 	Route::get('/', 'Admin\IndexController@index');
-	
 	Route::resource('/articles','Admin\ArticlesController');
 	
 });
