@@ -38,4 +38,5 @@ Route::group(['prefix' => 'admin','middleware'=> ['auth']],function() {
 	Route::get('/', 'Admin\IndexController@index');
 	Route::resource('/articles','Admin\ArticlesController');
 	Route::resource('/permissions', 'Admin\PermissionsController');
+	Route::resource('/menus', 'Admin\MenusController');
 });
