@@ -5,6 +5,7 @@
 			<td>{{ $item->url() }}</td>
 
 			<td>
+		
 			{!! Form::open(['url' => route('menus.destroy',['menus'=> $item->id]),'class'=>'form-horizontal','method'=>'POST']) !!}
 												    {{ method_field('DELETE') }}
 												    {!! Form::button('Delete', ['class' => 'btn btn-french-5','type'=>'submit']) !!}
