@@ -14,11 +14,10 @@ jQuery(document).ready(function($) {
 
 		$('.wrap_result').
 		css('color','green').
-		text('Сохранение комментария').
+		text('Saving comment').
 		fadeIn(500,function() {
 
 			var data = $('#commentform').serializeArray();
-
 			$.ajax({
 
 				url:$('#commentform').attr('action'),

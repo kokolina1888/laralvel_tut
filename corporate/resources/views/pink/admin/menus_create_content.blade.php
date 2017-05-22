@@ -7,21 +7,21 @@
 
 			<li class="text-field">
 				<label for="name-contact-us">
-					<span class="label">Заголовок:</span>
+					<span class="label">Title:</span>
 					<br />
-					<span class="sublabel">Заголовок пункта</span><br />
+					<span class="sublabel">Link Title</span><br />
 				</label>
 				<div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span>
-					{!! Form::text('title',isset($menu->title) ? $menu->title  : old('title'), ['placeholder'=>'Введите название страницы']) !!}
+					{!! Form::text('title',isset($menu->title) ? $menu->title  : old('title'), ['placeholder'=>'Link title']) !!}
 				</div>
 			</li>
 
 
 			<li class="text-field">
 				<label for="name-contact-us">
-					<span class="label">Родительский пункт меню:</span>
+					<span class="label">Parent link item:</span>
 					<br />
-					<span class="sublabel">Родитель:</span><br />
+					<span class="sublabel">Parent:</span><br />
 				</label>
 				<div class="input-prepend">
 					{!! Form::select('parent', $menus, isset($menu->parent) ? $menu->parent : null) !!}
@@ -35,18 +35,18 @@
 		<div id="accordion">
 
 			<h3>{!! Form::radio('type', 'customLink',(isset($type) && $type == 'customLink') ? TRUE : FALSE,['class' => 'radioMenu']) !!}	
-				<span class="label">Пользовательская ссылка:</span></h3>
+				<span class="label">User link:</span></h3>
 
 				<ul>
 
 					<li class="text-field">
 						<label for="name-contact-us">
-							<span class="label">Путь для ссылки:</span>
+							<span class="label">Url:</span>
 							<br />
-							<span class="sublabel">Путь для ссылки</span><br />
+							<span class="sublabel">url</span><br />
 						</label>
 						<div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span>
-							{!! Form::text('custom_link',(isset($menu->path) && $type=='customLink') ? $menu->path  : old('custom_link'), ['placeholder'=>'Введите название страницы']) !!}
+							{!! Form::text('custom_link',(isset($menu->path) && $type=='customLink') ? $menu->path  : old('custom_link'), ['placeholder'=>'url']) !!}
 						</div>
 					</li>
 					<div style="clear: both;"></div>
@@ -54,15 +54,15 @@
 
 
 				<h3>{!! Form::radio('type', 'blogLink',(isset($type) && $type == 'blogLink') ? TRUE : FALSE,['class' => 'radioMenu']) !!}	
-					<span class="label">Раздел Блог:</span></h3>
+					<span class="label">Blog:</span></h3>
 
 					<ul>
 
 						<li class="text-field">
 							<label for="name-contact-us">
-								<span class="label">Ссылка на категорию блога:</span>
+								<span class="label">Blog category:</span>
 								<br />
-								<span class="sublabel">Ссылка на категорию блога</span><br />
+								<span class="sublabel">Blog Category</span><br />
 							</label>
 							<div class="input-prepend">
 
@@ -75,12 +75,12 @@
 
 						<li class="text-field">
 							<label for="name-contact-us">
-								<span class="label">Ссылка на материал блога:</span>
+								<span class="label">Link to blog item:</span>
 								<br />
-								<span class="sublabel">Ссылка на материал блога</span><br />
+								<span class="sublabel">Link to blog item</span><br />
 							</label>
 							<div class="input-prepend">
-								{!! Form::select('article_alias', $articles, (isset($option) && $option) ? $option :FALSE, ['placeholder' => 'Не используется']) !!}
+								{!! Form::select('article_alias', $articles, (isset($option) && $option) ? $option :FALSE, ['placeholder' => 'Not in use']) !!}
 
 							</div>
 
@@ -91,18 +91,18 @@
 
 
 					<h3>{!! Form::radio('type', 'portfolioLink',(isset($type) && $type == 'portfolioLink') ? TRUE : FALSE,['class' => 'radioMenu']) !!}	
-						<span class="label">Раздел портфолио:</span></h3>
+						<span class="label">Portfolio:</span></h3>
 
 						<ul>
 
 							<li class="text-field">
 								<label for="name-contact-us">
-									<span class="label">Ссылка на запись портфолио:</span>
+									<span class="label">Link to portfolio item:</span>
 									<br />
-									<span class="sublabel">Ссылка на запись портфолио</span><br />
+									<span class="sublabel">Link to portfolio item</span><br />
 								</label>
 								<div class="input-prepend">
-									{!! Form::select('portfolio_alias', $portfolios, (isset($option) && $option) ? $option :FALSE, ['placeholder' => 'Не используется']) !!}
+									{!! Form::select('portfolio_alias', $portfolios, (isset($option) && $option) ? $option :FALSE, ['placeholder' => 'Not in use']) !!}
 
 								</div>
 
@@ -110,12 +110,12 @@
 
 							<li class="text-field">
 								<label for="name-contact-us">
-									<span class="label">Портфолио:</span>
+									<span class="label">Portfolio:</span>
 									<br />
-									<span class="sublabel">Портфолио</span><br />
+									<span class="sublabel">Portfolio</span><br />
 								</label>
 								<div class="input-prepend">
-									{!! Form::select('filter_alias', $filters, (isset($option) && $option) ? $option :FALSE, ['placeholder' => 'Не используется']) !!}
+									{!! Form::select('filter_alias', $filters, (isset($option) && $option) ? $option :FALSE, ['placeholder' => 'Not in use']) !!}
 
 								</div>
 
@@ -136,7 +136,7 @@
 					@endif
 					<ul>
 						<li class="submit-button"> 
-							{!! Form::button('Сохранить', ['class' => 'btn btn-the-salmon-dance-3','type'=>'submit']) !!}			
+							{!! Form::button('Save', ['class' => 'btn btn-the-salmon-dance-3','type'=>'submit']) !!}			
 						</li>	
 					</ul>
 
