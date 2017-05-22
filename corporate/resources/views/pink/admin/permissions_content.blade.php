@@ -1,7 +1,7 @@
 <div id="content-page" class="content group">
 	<div class="hentry group">
 	
-	<h3 class="title_page">Привилегии</h3>
+	<h3 class="title_page">Permissions</h3>
 	
 	<form action="{{ route('permissions.store') }}" method="POST">
 		{{ csrf_field() }}
@@ -52,7 +52,7 @@
 			
 		</div>
 		
-		<input class="btn btn-the-salmon-dance-3" type="submit" value="Обновить" />
+		<input class="btn btn-the-salmon-dance-3" type="submit" value="Update" />
 
 		
 	</form>
