@@ -43,7 +43,7 @@
 				                            </li>
 				                            <li class="submit-button">
 	
-				                                <input type="submit" name="yit_sendmail" value="Отправить" class="sendmail alignright" />			
+				                                <input type="submit" name="yit_sendmail" value="Send" class="sendmail alignright" />			
 				                            </li>
 				                        </ul>
 				                    </fieldset>

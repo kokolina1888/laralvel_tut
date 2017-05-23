@@ -16,7 +16,9 @@ class PortfolioPolicy
      */
     public function __construct()
     {
-        public function save(User $user)
+        
+    }
+    public function save(User $user)
         {
             return $user->canDo('add_portfolios');
         }
@@ -31,5 +33,4 @@ class PortfolioPolicy
             return ($user->canDo('delete_portfolios') && $user->id == $portfolio->user_id);
         }
 
-    }
 }

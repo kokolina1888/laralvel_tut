@@ -60,7 +60,7 @@ class AdminController extends Controller
 			
 			$menu->add('Articles',array('route' => 'articles.index'));
 			
-			$menu->add('Portfolio',  array('route'  => 'articles.index'));
+			$menu->add('Portfolio',  array('route'  => 'portfolios.index'));
 			$menu->add('Menu',  array('route'  => 'menus.index'));
 			$menu->add('Users',  array('route'  => 'users.index'));
 			$menu->add('Permissions',  array('route'  => 'permissions.index'));

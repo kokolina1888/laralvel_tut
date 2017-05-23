@@ -3,9 +3,10 @@
 namespace Corp\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+
 use Auth;
 
-class ArticleRequest extends FormRequest
+class PortfolioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,18 +15,9 @@ class ArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->canDo('add_articles');
+        return Auth::user()->canDo('add_portfolios');
+        
     }
-
-    protected function getValidatorInstance()
-    {
-        $validator = parent::getValidatorInstance();
-        
-        
-        return $validator;
-        
-        
-    }   
 
     /**
      * Get the validation rules that apply to the request.
@@ -34,13 +26,14 @@ class ArticleRequest extends FormRequest
      */
     public function rules()
     {
-       return [
+        $id = (isset($this->route()->parameter('portfolios')->id)) ? $this->route()->parameter('portfolios')->id : '';
+        
+        return [
             //
        'title'      => 'required|max:255',
        'text'       => 'required',
-       'category_id'=> 'required|integer',
-       'alias'      => 'sometimes|unique:articles,alias|max:255',      
+       'alias'      => 'sometimes|max:255|unique:portfolios,alias,id'.$id,      
 
        ];
-   }
+    }
 }

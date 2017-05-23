@@ -5,7 +5,17 @@ namespace Corp\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Corp\Http\Controllers\Controller;
 
+use Corp\Http\Requests\PortfolioRequest;
+
 use Corp\Repositories\PortfoliosRepository;
+
+use Corp\Portfolio;
+use Corp\Filter;
+
+use Auth;
+use Gate;
+use Image;
+use Config;
 
 class PortfoliosController extends AdminController
 {
@@ -63,12 +73,20 @@ class PortfoliosController extends AdminController
 
         $this->title = 'Add Portfolio';
 
-        //TO DO add filter alias
+        $filters = Filter::select(['id', 'title','alias'])->get();
+        // dd($filters);
         
-        $this->content = view(env('THEME').'.admin.portfolios_create_content');
+        $list_filters = [];
+        foreach($filters as $filter){
+            
+                $list_filters[$filter->alias] = $filter->title;
+           }
 
-        return $this->renderOutput();
-    }
+        // $lists = [['one', 'two'], ['two', 'three']];
+        //dd($list_filters);
+        $this->content = view(env('THEME').'.admin.portfolios_create_content')->with('filters', $list_filters);
+
+        return $this->renderOutput();    }
 
     /**
      * Store a newly created resource in storage.
@@ -76,11 +94,16 @@ class PortfoliosController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PortfolioRequest $request)
     {
-        //
-    }
+        $result = $this->p_rep->addPortfolio($request);
 
+        if(is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        
+        return redirect('/admin')->with($result);
+    }
     /**
      * Display the specified resource.
      *

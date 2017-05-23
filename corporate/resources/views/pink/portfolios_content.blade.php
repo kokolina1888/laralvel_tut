@@ -21,14 +21,14 @@
 						<img src="{{ asset(env('THEME')) }}/images/projects/{{ $portfolio->img->max }}" alt="0061" title="0061" />							
 						<div class="overlay">
 							<a class="overlay_img" href="{{ asset(env('THEME')) }}/images/projects/{{ $portfolio->img->max }}" rel="lightbox" title="{{ $portfolio->title }}"></a>
-							<a class="overlay_project" href="{{ route('portfolios.show', ['alias'=>$portfolio->alias])}}"></a>
+							<a class="overlay_project" href="{{ route('showPortfolio', ['alias'=>$portfolio->alias])}}"></a>
 							<span class="overlay_title">{{ $portfolio->title }}</span>
 						</div>
 					</div>
 				</div>
 				<div class="work-description">
 					<h3>{{ $portfolio->title }}</h3>
-					<p>{{ $portfolio->text }}</p>
+					<p>{!!html_entity_decode($portfolio->text)!!}</p>
 					@if($portfolio->created_at)
 					<p class="workdate"><span class="label">Year:</span> {{ $portfolio->created_at->format('Y')}}</p>
 					@endif
@@ -37,7 +37,7 @@
 						<p class="skills"><span class="label">Filter:</span> {{ $portfolio->filter->title}}</p>
 						<p class="workdate"><span class="label">Customer:</span>{{ $portfolio->customer }}</p>
 					</div>
-					<a class="read-more" href="{{ route('portfolios.show', ['alias'=>$portfolio->alias])}}">View Project</a>            
+					<a class="read-more" href="{{ route('showPortfolio', ['alias'=>$portfolio->alias])}}">View Project</a>            
 				</div>
 				<div class="clear"></div>
 			</div>

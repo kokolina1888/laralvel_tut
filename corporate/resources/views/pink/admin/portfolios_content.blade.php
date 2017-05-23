@@ -26,7 +26,7 @@
 						<td>{{$portfolio->alias}}</td>
 						<td>
 							@if(isset($portfolio->img->mini))
-							{!! Html::image(asset(env('THEME')).'/images/portfolios/'.$portfolio->img->mini) !!}
+							{!! Html::image(asset(env('THEME')).'/images/projects/'.$portfolio->img->mini) !!}
 							@endif
 						</td>
 						<td>
@@ -42,7 +42,7 @@
 			</table>
 		</div>
 		
-		{!! HTML::link(route('portfolios.create'),'Add Article',['class' => 'btn btn-the-salmon-dance-3']) !!}
+		{!! HTML::link(route('portfolios.create'),'Add Portfolio',['class' => 'btn btn-the-salmon-dance-3']) !!}
 		
 		
 	</div>

@@ -1,42 +1,43 @@
 <div id="content-page" class="content group">
 	<div class="hentry group">
 
-		{!! Form::open(['url' => (isset($article->id)) ? route('articles.update',['articles'=>$article->alias]) : route('articles.store'),'class'=>'contact-form','method'=>'POST','enctype'=>'multipart/form-data']) !!}
+		{!! Form::open(['url' => (isset($portfolio->id)) ? route('portfolios.update',['portfolios'=>$portfolio->alias]) : route('portfolios.store'),'class'=>'contact-form','method'=>'POST','enctype'=>'multipart/form-data']) !!}
 
 		<ul>
 			<li class="text-field">
 				<label for="name-contact-us">
 					<span class="label">Name:</span>
-					<br />
-					<span class="sublabel">Title</span><br />
+					<p>
+						<span class="sublabel">Title</span>
+					</p>
 				</label>
 				<div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span>
-					{!! Form::text('title',isset($article->title) ? $article->title  : old('title'), ['placeholder'=>'Enter page name']) !!}
+					{!! Form::text('title',isset($portfolio->title) ? $portfolio->title  : old('title'), ['placeholder'=>'Enter portfolio title']) !!}
 				</div>
+			</li>
+			<!-- portfolio text -->
+			<li class="textarea-field">
+				<label for="message-contact-us">
+					<span class="label">Portfolio Text:</span>
+
+					<p><span class="label">Description:</span></p>
+				</label>
+				<div class="input-prepend"><span class="add-on"><i class="icon-pencil"></i></span>
+					{!! Form::textarea('text', isset($portfolio->text) ? $portfolio->text  : old('text'), ['id'=>'editor','class' => 'form-control','placeholder'=>'Enter portfolio text']) !!}
+				</div>
+				<div class="msg-error"></div>
 			</li>
 
 			<li class="text-field">
 				<label for="name-contact-us">
-					<span class="label">Key words:</span>
+					<span class="label">Customer:</span>
 					<br />
-					<span class="sublabel">Article Title</span><br />
+					<span class="sublabel">Enter customer</span><br />
 				</label>
 				<div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span>
-					{!! Form::text('keywords', isset($article->keywords) ? $article->keywords  : old('keywords'), ['placeholder'=>'Enter page name']) !!}
+					{!! Form::text('customer', isset($portfolio->customer) ? $portfolio->customer  : old('customer'), ['placeholder'=>'Enter portfolio customer']) !!}
 				</div>
 			</li>
-
-			<li class="text-field">
-				<label for="name-contact-us">
-					<span class="label">Meta desc:</span>
-					<br />
-					<span class="sublabel">Article Title</span><br />
-				</label>
-				<div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span>
-					{!! Form::text('meta_desc', isset($article->meta_desc) ? $article->meta_desc  : old('meta_desc'), ['placeholder'=>'Enter page name']) !!}
-				</div>
-			</li>
-
 			<li class="text-field">
 				<label for="name-contact-us">
 					<span class="label">Alias:</span>
@@ -44,40 +45,22 @@
 					<span class="sublabel">Enter alias</span><br />
 				</label>
 				<div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span>
-					{!! Form::text('alias', isset($article->alias) ? $article->alias  : old('alias'), ['placeholder'=>'Enter page alias']) !!}
+					{!! Form::text('alias', isset($portfolio->alias) ? $portfolio->alias  : old('alias'), ['placeholder'=>'Enter portfolio alias']) !!}
 				</div>
 			</li>
 
-			<li class="textarea-field">
-				<label for="message-contact-us">
-					<span class="label">Short Description:</span>
-				</label>
-				<div class="input-prepend"><span class="add-on"><i class="icon-pencil"></i></span>
-					{!! Form::textarea('desc', isset($article->desc) ? $article->desc  : old('desc'), ['id'=>'editor','class' => 'form-control','placeholder'=>'Enter Page Text']) !!}
-				</div>
-				<div class="msg-error"></div>
-			</li>
-
-			<li class="textarea-field">
-				<label for="message-contact-us">
-					<span class="label">Description:</span>
-				</label>
-				<div class="input-prepend"><span class="add-on"><i class="icon-pencil"></i></span>
-					{!! Form::textarea('text', isset($article->text) ? $article->text  : old('text'), ['id'=>'editor2','class' => 'form-control','placeholder'=>'Enter page text']) !!}
-				</div>
-				<div class="msg-error"></div>
-			</li>
-
-			@if(isset($article->img->path))
+			
+			
+			@if(isset($portfolio->img->path))
 			<li class="textarea-field">
 				
 				<label>
-					<span class="label">Page image:</span>
+					<span class="label">Portfolio image:</span>
 				</label>
 				
-				{{ Html::image(asset(env('THEME')).'/images/articles/'.$article->img->path,'',['style'=>'width:400px']) }}
-				{!! Form::hidden('old_image',$article->img->path) !!}
-				{!! Form::hidden('id',$article->id) !!}
+				{{ Html::image(asset(env('THEME')).'/images/projects/'.$portfolio->img->path,'',['style'=>'width:400px']) }}
+				{!! Form::hidden('old_image',$portfolio->img->path) !!}
+				{!! Form::hidden('id',$portfolio->id) !!}
 
 			</li>
 			@endif
@@ -87,7 +70,7 @@
 				<label for="name-contact-us">
 					<span class="label">Image:</span>
 					<br />
-					<span class="sublabel">Page Image</span><br />
+					<span class="sublabel">Portfolio Image</span><br />
 				</label>
 				<div class="input-prepend">
 					{!! Form::file('image', ['class' => 'filestyle','data-buttonText'=>'Choose image','data-buttonName'=>"btn-primary",'data-placeholder'=>"No File"]) !!}
@@ -97,14 +80,12 @@
 
 			<li class="text-field">
 				<label for="name-contact-us">
-					<span class="label">Category:</span>
+					<span class="label">Filter:</span>
 					<br />
-					<span class="sublabel">Article category</span><br />
+					<span class="sublabel">Portfolio filter</span><br />
 				</label>
 				<div class="input-prepend">
-
-
-					{!! Form::select('category_id', $categories, ['placeholder' => 'Pick a size...']) !!}
+					{!! Form::select('filter_alias', $filters, ['placeholder' => 'Pick a filter...']) !!}
 				</div>
 
 			</li>	 
@@ -124,7 +105,7 @@
 
 		<script>
 			CKEDITOR.replace( 'editor' );
-			CKEDITOR.replace( 'editor2' );
+			
 		</script>
 	</div>
-</div>
+</div>	

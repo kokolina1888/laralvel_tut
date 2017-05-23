@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Portfolio extends Model
 {
-    public function filter()
-    {
-    	return $this->belongsTo('Corp\Filter', 'filter_alias', 'alias');
-    }
 
-    
+	protected $fillable = ['title', 'img', 'alias', 'text', 'filter_alias', 'customer'];
+
+
+	public function filter()
+	{
+		return $this->belongsTo('Corp\Filter', 'filter_alias', 'alias');
+	}
+
+
 }

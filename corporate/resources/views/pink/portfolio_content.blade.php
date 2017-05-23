@@ -28,7 +28,8 @@
 					</div>
 					<div class="work-description">
 						<p>
-							{{ $portfolio->text }}
+							{!!html_entity_decode($portfolio->text)!!}
+							
 						</p>
 						<p>Sed <a href="http://yourinspirationweb.com/demo/sheeva/work/xmas-icons/#">porttitor eros </a>ut purus elementum a consectetur purus vulputate</p>
 						<div class="clear"></div>
@@ -52,8 +53,8 @@
 				<div class="portfolio-full-description-related-projects">
 					@foreach($portfolios as $item)
 					<div class="related_project">
-						<a class="related_proj related_img" href="{{ route('portfolios.show', ['alias'=> $item->alias])}}" title="{{ $portfolio->title}}"><img src="{{ asset(env('THEME')) }}/images/projects/{{ $item->img->mini}}" alt="0061" title="{{ $item->item }}" /></a>
-						<h4><a href="{{ route('portfolios.show', ['alias'=> $item->alias])}}">{{ $item->title }}</a></h4>
+						<a class="related_proj related_img" href="{{ route('showPortfolio', ['alias'=> $item->alias])}}" title="{{ $portfolio->title}}"><img src="{{ asset(env('THEME')) }}/images/projects/{{ $item->img->mini}}" alt="0061" title="{{ $item->item }}" /></a>
+						<h4><a href="{{ route('showPortfolio', ['alias'=> $item->alias])}}">{{ $item->title }}</a></h4>
 					</div>
 					@endforeach
 				</div>

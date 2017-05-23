@@ -35,7 +35,7 @@ class ArticlesRepository extends Repository {
 		$data = $request->except('_token','image');
 		
 		if(empty($data)) {
-			return array('error' => 'Нет данных');
+			return array('error' => 'No data');
 		}
 		
 		if(empty($data['alias'])) {

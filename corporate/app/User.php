@@ -31,6 +31,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('Corp\Article');
     }
+    
+    public function portfolios()
+    {
+        return $this->hasMany('Corp\Portfolio');
+    }
 
 
     public function roles()
@@ -43,7 +48,7 @@ class User extends Authenticatable
 
         if(is_array($perms)){
 
-           foreach ($perms as $permName) {
+         foreach ($perms as $permName) {
 
             $permName = $this->canDo($permName);
             if(!$permName){
@@ -51,7 +56,7 @@ class User extends Authenticatable
 
                     $check = true;
                 } elseif($require){
-                    
+
                     $check = false;
 
                     break;
