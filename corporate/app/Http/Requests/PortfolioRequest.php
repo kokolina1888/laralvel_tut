@@ -32,8 +32,9 @@ class PortfolioRequest extends FormRequest
             //
        'title'      => 'required|max:255',
        'text'       => 'required',
-       'alias'      => 'sometimes|max:255|unique:portfolios,alias,id'.$id,      
+       'alias'      => 'sometimes|max:255|unique:portfolios,id'.$id,      
 
        ];
     }
 }
+// 1RSycUaP.jpg

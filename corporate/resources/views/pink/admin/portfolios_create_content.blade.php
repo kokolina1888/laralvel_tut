@@ -89,15 +89,16 @@
 				</div>
 
 			</li>	 
-
-			@if(isset($article->id))
+<!-- for update portfolio -->
+			@if(isset($portfolio->id))
 			<input type="hidden" name="_method" value="PUT">		
 
 			@endif
 
 			<li class="submit-button"> 
-				{!! Form::button('Save', ['class' => 'btn btn-the-salmon-dance-3','type'=>'submit']) !!}			
+				{!! Form::button((isset($portfolio->id))?'Update':'Save', ['class' => 'btn btn-the-salmon-dance-3','type'=>'submit']) !!}			
 			</li>
+
 
 		</ul>
 

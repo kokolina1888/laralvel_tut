@@ -14,8 +14,7 @@ use Corp\Filter;
 
 use Auth;
 use Gate;
-use Image;
-use Config;
+
 
 class PortfoliosController extends AdminController
 {
@@ -104,16 +103,7 @@ class PortfoliosController extends AdminController
         
         return redirect('/admin')->with($result);
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -121,10 +111,30 @@ class PortfoliosController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+   public function edit($alias)
     {
-        //
+    
+        if(Gate::denies('edit', new Portfolio)){
+            abort(404);
+        }
+        $portfolio = Portfolio::where('alias', $alias)->first();
+       
+        $portfolio->img = json_decode($portfolio->img);
+         $filters = Filter::select(['id', 'title','alias'])->get();
+        // dd($filters);
+        
+        $list_filters = [];
+        foreach($filters as $filter){
+            
+                $list_filters[$filter->alias] = $filter->title;
+           }
+
+        $this->title = 'Edit Portfolio ' . $portfolio->title;
+        $this->content = view(env('THEME').'.admin.portfolios_create_content')->with(['filters'=>$list_filters, 'portfolio'=>$portfolio]);
+
+        return $this->renderOutput();
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -133,9 +143,17 @@ class PortfoliosController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PortfolioRequest $request, $alias)
     {
-        //
+        $portfolio = Portfolio::where('alias', $alias)->first();
+
+        $result = $this->p_rep->updatePortfolio($request, $portfolio);
+
+        if(is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        
+        return redirect('/admin')->with($result);
     }
 
     /**
@@ -144,8 +162,17 @@ class PortfoliosController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    public function destroy($alias)
+{
+        $portfolio = Portfolio::where('alias', $alias)->first();
+
+     $result = $this->p_rep->deletePortfolio($portfolio);
+        
+        if(is_array($result) && !empty($result['error'])) {
+            return back()->with($result);
+        }
+        
+        return redirect('/admin')->with($result);
+}
+
 }

@@ -4,6 +4,7 @@ namespace Corp\Policies;
 
 use Corp\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Corp\Portfolio;
 
 class PortfolioPolicy
 {
