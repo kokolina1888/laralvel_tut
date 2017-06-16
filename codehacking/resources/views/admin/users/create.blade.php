@@ -23,6 +23,7 @@
   </div>
   <div class="form-group">
   {!!Form::label('role_id', 'Role')!!}
+  <!-- only for key value pairs -->
   {!!Form::select('role_id', [''=>'choose options'] + $roles, null, ['class'=>'form-control'])!!}
   </div>
   <div class="form-group">
